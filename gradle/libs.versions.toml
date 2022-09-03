@@ -1,0 +1,77 @@
+[versions]
+# android config
+android_min_sdk = "24"
+android_compile_sdk = "32"
+android_target_sdk = "32"
+
+# ios config
+ios_target = "14.1"
+
+# kmm config
+youtv_kmm = "1.0.0"
+
+# gradle
+gradle = "7.2.1"
+
+# kotlin
+kotlin = "1.7.10"
+kotlinx_serialization = "1.4.0-RC"
+
+# gradle version
+ben_manes_gradle_version = "0.42.0"
+
+# sqldelight
+sqldelight = "1.5.3"
+
+# ktor
+ktor = "2.0.2"
+
+# koin
+koin = "3.2.0"
+
+# Coroutines
+coroutines = "1.6.0"
+coroutines_native = "1.5.2-native-mt"
+
+[libraries] #------------------------------------------------------------------------------------------
+# gradle
+gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+
+# kotlin
+kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin_serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+kotlinx_serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx_serialization" }
+
+# sqldelight
+sqldelight_gradle_plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
+sqldelight_runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight_android = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight_native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight"}
+
+# ktor
+ktor_core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor_serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor"}
+ktor_serialization_kotlinx = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor_logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor"}
+ktor_negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor_android = { module = "io.ktor:ktor-client-android", version.ref = "ktor"}
+ktor_darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor"}
+
+# Koin
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+# ben manes
+ben_manes_gradle_plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "ben_manes_gradle_version" }
+
+# coroutines
+coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines_android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines_native = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines_native" }
+
+[bundles]  #------------------------------------------------------------------------------------------
+ktor = ["ktor_core","ktor_serialization","ktor_serialization_kotlinx","ktor_logging","ktor_negotiation"]
+
+[plugins] #------------------------------------------------------------------------------------------
+sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight"}
+ben_manes_gradle = { id = "com.github.ben-manes.versions", version.ref = "ben_manes_gradle_version" }
