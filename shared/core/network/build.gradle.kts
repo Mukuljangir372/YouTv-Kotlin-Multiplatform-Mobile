@@ -17,6 +17,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":shared:common:models"))
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.bundles.ktor)
                 implementation(libs.koin)

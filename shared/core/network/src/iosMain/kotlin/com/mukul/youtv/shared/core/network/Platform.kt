@@ -1,7 +1,8 @@
 package com.mukul.youtv.shared.core.network
 
-import platform.UIKit.UIDevice
+import io.ktor.client.engine.*
+import io.ktor.client.engine.darwin.*
 
-actual class Platform actual constructor() {
-    actual val platform: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+actual class Platform actual constructor(){
+    actual val ktorClientEngine: HttpClientEngineFactory<*> = Darwin
 }

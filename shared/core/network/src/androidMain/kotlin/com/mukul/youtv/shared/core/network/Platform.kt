@@ -1,5 +1,8 @@
 package com.mukul.youtv.shared.core.network
 
-actual class Platform actual constructor() {
-    actual val platform: String = "Android ${android.os.Build.VERSION.SDK_INT}"
+import io.ktor.client.engine.*
+import io.ktor.client.engine.android.*
+
+actual class Platform actual constructor(){
+    actual val ktorClientEngine: HttpClientEngineFactory<*> = Android
 }

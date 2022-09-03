@@ -1,7 +1,7 @@
 package com.mukul.youtv.shared.core.utils
 
-import platform.UIKit.UIDevice
+import kotlinx.coroutines.CoroutineDispatcher
 
-actual class Platform actual constructor() {
-    actual val platform: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+actual class Platform actual constructor(){
+    actual val defaultDispatcher: CoroutineDispatcher = IosDefaultCoroutineDispatcher()
 }

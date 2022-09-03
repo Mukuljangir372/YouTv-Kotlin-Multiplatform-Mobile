@@ -1,5 +1,7 @@
 package com.mukul.youtv.shared.core.network
 
-expect class Platform() {
-    val platform: String
+import io.ktor.client.engine.*
+
+expect class Platform constructor(){
+    actual val ktorClientEngine: HttpClientEngineFactory<*>
 }

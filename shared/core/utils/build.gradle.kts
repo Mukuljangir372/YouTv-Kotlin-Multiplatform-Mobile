@@ -1,11 +1,8 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    id("youtv_kmm_lib")
 }
 
 kotlin {
-    android()
-    
     listOf(
         iosX64(),
         iosArm64(),
@@ -17,13 +14,18 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        val commonMain by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.coroutines.core)
+                implementation(libs.koin)
             }
         }
-        val androidMain by getting
+        val commonTest by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.coroutines.android)
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -33,6 +35,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(libs.coroutines.native)
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -43,14 +48,5 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
-    }
-}
-
-android {
-    compileSdk = 32
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 24
-        targetSdk = 32
     }
 }
