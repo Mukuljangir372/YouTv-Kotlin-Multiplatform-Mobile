@@ -10,6 +10,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+            isStatic = false
+            linkerOpts.add("-lsqlite3")
         }
     }
 
