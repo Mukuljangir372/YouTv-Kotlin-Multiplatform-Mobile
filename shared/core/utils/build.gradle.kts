@@ -16,6 +16,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":shared:core:network"))
+                implementation(project(":shared:common:models"))
+                implementation(libs.ktor.core)
                 implementation(libs.coroutines.core)
                 implementation(libs.koin)
             }

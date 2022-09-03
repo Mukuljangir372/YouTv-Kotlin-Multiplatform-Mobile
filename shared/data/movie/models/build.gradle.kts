@@ -1,11 +1,8 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    id("youtv_kmm_lib")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
-
 kotlin {
-    android()
-    
     listOf(
         iosX64(),
         iosArm64(),
@@ -17,12 +14,12 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        val commonMain by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kotlinx.serialization)
             }
         }
+        val commonTest by getting
         val androidMain by getting
         val androidTest by getting
         val iosX64Main by getting

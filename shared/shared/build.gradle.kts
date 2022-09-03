@@ -14,7 +14,27 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.koin)
+                implementation(libs.coroutines.core)
+
+                api(project(":shared:common:models"))
+                api(project(":shared:core:database"))
+                api(project(":shared:core:utils"))
+                implementation(project(":shared:tmdb"))
+                implementation(project(":shared:core:network"))
+
+                api(project(":shared:data:movie:models"))
+                api(project(":shared:domain:movie:api"))
+                implementation(project(":shared:data:movie:local:api"))
+                implementation(project(":shared:data:movie:local:impl"))
+                implementation(project(":shared:data:movie:network:api"))
+                implementation(project(":shared:data:movie:network:impl"))
+                implementation(project(":shared:domain:movie:impl"))
+                implementation(project(":shared:domain:movie:test"))
+            }
+        }
         val commonTest by getting
         val androidMain by getting
         val androidTest by getting

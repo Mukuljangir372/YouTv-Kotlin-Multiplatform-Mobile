@@ -11,16 +11,14 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "api"
+            baseName = "tmdb"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":shared:common:models"))
-                implementation(project(":shared:data:movie:models"))
-                implementation(libs.ktor.core)
+                implementation(libs.koin)
             }
         }
         val commonTest by getting
