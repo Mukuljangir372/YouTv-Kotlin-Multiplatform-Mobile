@@ -1,11 +1,15 @@
+@Suppress(
+    "DSL_SCOPE_VIOLATION",
+    "MISSING_DEPENDENCY_CLASS",
+    "UNRESOLVED_REFERENCE_WRONG_RECEIVER",
+    "FUNCTION_CALL_EXPECTED",
+    "UnstableApiUsage"
+)
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    id("youtv_kmm_lib")
+    alias(libs.plugins.sqldelight)
 }
-
 kotlin {
-    android()
-    
     listOf(
         iosX64(),
         iosArm64(),
@@ -17,13 +21,18 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        val commonMain by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.koin)
             }
         }
-        val androidMain by getting
+        val commonTest by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.sqldelight.android)
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -33,6 +42,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(libs.sqldelight.native)
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -45,12 +57,8 @@ kotlin {
         }
     }
 }
-
-android {
-    compileSdk = 32
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = 24
-        targetSdk = 32
+sqldelight {
+    database("YouTvAppDatabase") {
+        packageName = "com.mukul.youtv.shared.core.database"
     }
 }

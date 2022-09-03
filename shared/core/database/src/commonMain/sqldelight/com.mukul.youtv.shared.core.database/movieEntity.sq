@@ -1,0 +1,21 @@
+CREATE TABLE movieEntity (
+id INTEGER NOT NULL PRIMARY KEY,
+title TEXT NOT NULL,
+overview TEXT NOT NULL,
+poster TEXT NOT NULL
+);
+
+insertMovie:
+INSERT OR REPLACE
+INTO movieEntity(
+id,
+title,
+overview,
+poster
+) VALUES(?,?,?,?);
+
+getMovies:
+SELECT * FROM
+movieEntity;
+
+
