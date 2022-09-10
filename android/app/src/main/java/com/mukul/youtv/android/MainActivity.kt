@@ -25,12 +25,8 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     view.text = "movie state = ${it.data}"
                 }
-                print("movie result data = ${it.data}")
             },{
-                runOnUiThread {
-                    view.text = "movie state = ${it}"
-                }
-                print("movie state = error")
+
             })
         }
 

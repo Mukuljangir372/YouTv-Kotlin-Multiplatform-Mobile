@@ -17,6 +17,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared:data:movie:network:api"))
+                implementation(project(":shared:data:movie:network:impl"))
             }
         }
         val commonTest by getting

@@ -3,8 +3,6 @@ plugins {
 }
 
 kotlin {
-    android()
-    
     listOf(
         iosX64(),
         iosArm64(),
