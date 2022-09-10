@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 
 class BaseGraph {
     fun initKoin(
-        driverFactory: DriverFactory
+        driverFactory: DriverFactory,
     ) {
         startKoin {
             modules(getDatabaseModule(driverFactory))

@@ -11,14 +11,6 @@ dependencies {
     implementation(libs.gradle.plugin)
     compileOnly(gradleApi())
 }
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
-}
-tasks.withType<JavaCompile>().configureEach {
-    options.release.set(8)
-}
 gradlePlugin {
     plugins {
         fun createPlugin(id: String, className: String) {
