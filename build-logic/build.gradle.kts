@@ -24,6 +24,10 @@ gradlePlugin {
             className = "com.mukul.youtv.build.logic.YouTvAndroidAppLibPlugin"
         )
         createPlugin(
+            id = "youtv_android_compose_lib",
+            className = "com.mukul.youtv.build.logic.YouTvAndroidComposeAppLibPlugin"
+        )
+        createPlugin(
             id = "youtv_kmm_lib",
             className = "com.mukul.youtv.build.logic.YouTvKmmLibPlugin"
         )

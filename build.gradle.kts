@@ -21,6 +21,7 @@ buildscript {
         classpath(libs.sqldelight.runtime)
         classpath(libs.ben.manes.gradle.plugin)
         classpath("com.mukul.youtv:build-logic")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
     }
 }
 
