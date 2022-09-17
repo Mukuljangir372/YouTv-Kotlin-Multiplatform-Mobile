@@ -1,16 +1,18 @@
 plugins {
-    id("com.android.application")
     kotlin("android")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdk = 32
+    compileSdk = libs.versions.android.compile.sdk.get().toInt()
     defaultConfig {
         applicationId = "com.mukul.youtv.android.app"
-        minSdk = 24
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.android.min.sdk.get().toInt()
+        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        versionCode = libs.versions.android.version.code.get().toInt()
+        versionName = libs.versions.android.version.name.get()
     }
     buildTypes {
         getByName("release") {
@@ -18,12 +20,15 @@ android {
         }
     }
 }
-
 dependencies {
     implementation(project(":shared:shared"))
+    implementation(libs.android.material)
+    implementation(libs.androidx.app.compat)
     implementation(libs.coroutines.android)
     implementation(libs.koin.android)
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation(libs.android.hilt)
+    kapt(libs.android.hilt.compiler)
+}
+kapt {
+    correctErrorTypes = true
 }

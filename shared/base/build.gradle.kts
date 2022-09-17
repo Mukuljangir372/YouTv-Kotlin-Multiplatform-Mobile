@@ -9,33 +9,14 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
-            isStatic = false
-            linkerOpts.add("-lsqlite3")
+            baseName = "base"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.koin)
                 implementation(libs.coroutines.core)
-
-                api(project(":shared:base"))
-                api(project(":shared:common:models"))
-                api(project(":shared:core:database"))
-                api(project(":shared:core:utils"))
-                implementation(project(":shared:tmdb"))
-                implementation(project(":shared:core:network"))
-
-                api(project(":shared:data:movie:models"))
-                api(project(":shared:domain:movie:api"))
-                api(project(":shared:domain:movie:impl"))
-                implementation(project(":shared:data:movie:local:api"))
-                implementation(project(":shared:data:movie:local:impl"))
-                implementation(project(":shared:data:movie:network:api"))
-                implementation(project(":shared:data:movie:network:impl"))
-                implementation(project(":shared:domain:movie:test"))
             }
         }
         val commonTest by getting

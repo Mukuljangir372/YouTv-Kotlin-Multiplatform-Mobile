@@ -1,4 +1,4 @@
-package com.mukul.youtv.shared.domain.movie.impl
+package com.mukul.youtv.shared.domain.movie.impl.repo
 
 import com.mukul.youtv.shared.common.models.core.DataState
 import com.mukul.youtv.shared.common.models.movie.MovieCategory

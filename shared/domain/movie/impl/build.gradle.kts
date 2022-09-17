@@ -18,6 +18,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":shared:base"))
                 implementation(project(":shared:common:models"))
                 implementation(project(":shared:core:utils"))
                 implementation(project(":shared:data:movie:models"))

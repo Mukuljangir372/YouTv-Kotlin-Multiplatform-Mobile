@@ -3,6 +3,8 @@
 android_min_sdk = "24"
 android_compile_sdk = "32"
 android_target_sdk = "32"
+android_version_code = "1"
+android_version_name = "1.0"
 
 # ios config
 ios_target = "14.1"
@@ -56,7 +58,7 @@ apache_commons = "2.4"
 android_accompanist = "0.25.1"
 
 # Hilt
-android_hilt = "2.38.1"
+android_hilt = "2.42"
 
 # Paging (Android)
 android_paging = "3.1.1"
