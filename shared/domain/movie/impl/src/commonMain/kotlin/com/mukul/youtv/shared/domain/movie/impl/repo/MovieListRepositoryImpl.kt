@@ -11,8 +11,10 @@ import com.mukul.youtv.shared.data.movie.models.Movie
 import com.mukul.youtv.shared.data.movie.models.asMovie
 import com.mukul.youtv.shared.data.movie.network.api.MovieListNetworkDataSource
 import com.mukul.youtv.shared.domain.movie.api.MovieListRepository
+import com.mukul.youtv.shared.tmdb.TmdbEndpoints
 
 class MovieListRepositoryImpl(
+    private val tmdbEndpoints: TmdbEndpoints,
     private val dispatchers: AppCoroutineDispatchers,
     private val localDataSource: MovieListLocalDataSource,
     private val networkDataSource: MovieListNetworkDataSource
@@ -29,7 +31,9 @@ class MovieListRepositoryImpl(
             shouldFetch = { shouldFetch },
             saveFetchResult = {
                 val movies = it.movies?.map { movie ->
-                    movie.asMovie()
+                    movie.asMovie().copy(
+                        poster = tmdbEndpoints.posterBaseUrl + movie.poster
+                    )
                 }?.also { list ->
                     localDataSource.insert(
                         list = list

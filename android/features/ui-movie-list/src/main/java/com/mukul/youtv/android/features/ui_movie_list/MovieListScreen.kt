@@ -1,22 +1,84 @@
 package com.mukul.youtv.android.features.ui_movie_list
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.mukul.youtv.android.common.ui.Dimens
+import com.mukul.youtv.android.common.ui.components.MovieListView
 
 @Composable
 fun MovieListScreen() {
+    MovieListScreen(
+        viewModel = hiltViewModel()
+    )
+}
+
+@Composable
+private fun MovieListScreen(
+    viewModel: MovieListViewModel
+) {
+    val state by viewModel.state.collectAsState()
+    MovieListScreen(
+        state = state
+    )
+}
+
+@Composable
+private fun MovieListScreen(
+    state: MovieListUiState
+) {
+    val scaffoldState = rememberScaffoldState()
+
     Scaffold(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        scaffoldState = scaffoldState
     ) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding)
         ) {
-            Text(text = "Hello")
+            LazyVerticalGrid(
+                modifier = Modifier.fillMaxSize().padding(Dimens.One),
+                columns = GridCells.Fixed(count = 2),
+                horizontalArrangement = Arrangement.spacedBy(Dimens.One + Dimens.Half),
+                verticalArrangement = Arrangement.spacedBy(Dimens.One + Dimens.Half),
+                content = {
+                    items(
+                        count = state.movies.size
+                    ) {
+                        val movie = state.movies[it]
+                        MovieListView(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(Dimens.Twenty + Dimens.Nine)
+                            ,
+                            movie = movie
+                        )
+                    }
+                }
+            )
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

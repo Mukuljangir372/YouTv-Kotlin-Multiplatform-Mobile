@@ -14,6 +14,11 @@ import javax.inject.Inject
 class MovieListViewModel @Inject constructor(
     private val getMoviesUseCase: GetMovieListUseCase
 ): ViewModel() {
+
+    init {
+        getMovies()
+    }
+
     private val pageLimit = 20
 
     val state: StateFlow<MovieListUiState> = combine(

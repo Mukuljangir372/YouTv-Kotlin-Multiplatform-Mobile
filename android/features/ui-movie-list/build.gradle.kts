@@ -7,4 +7,5 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.bundles.android.compose)
     debugImplementation(libs.bundles.android.compose.debug)
+    implementation(libs.android.hilt.compose)
 }
