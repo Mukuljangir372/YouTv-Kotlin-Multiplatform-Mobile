@@ -19,11 +19,24 @@ android {
             isMinifyEnabled = false
         }
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.android.compose.compiler.get()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 dependencies {
     implementation(project(":shared:shared"))
+    implementation(project(":android:features:ui-movie-list"))
     implementation(libs.android.material)
     implementation(libs.androidx.app.compat)
+    implementation(libs.bundles.android.compose)
+    debugImplementation(libs.bundles.android.compose.debug)
     implementation(libs.coroutines.android)
     implementation(libs.koin.android)
     implementation(libs.android.hilt)

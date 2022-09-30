@@ -20,6 +20,6 @@ class GetMovieListUseCase(
         val category: MovieCategory = MovieCategory.Popular,
         val shouldFetch: Boolean = true,
         val limit: Int = 20,
-        val page: Int,
+        val page: Int = 1,
     )
 }
