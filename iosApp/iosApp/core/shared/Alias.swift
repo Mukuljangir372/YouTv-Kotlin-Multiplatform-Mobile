@@ -7,5 +7,9 @@
 //
 
 import Foundation
+import shared
+
+typealias Movie = ModelsMovie
+typealias MovieListRepository = ApiMovieListRepository
 
 
