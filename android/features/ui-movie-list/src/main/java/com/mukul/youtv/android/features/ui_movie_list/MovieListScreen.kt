@@ -3,6 +3,7 @@ package com.mukul.youtv.android.features.ui_movie_list
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -25,16 +26,24 @@ private fun MovieListScreen(
     viewModel: MovieListViewModel
 ) {
     val state by viewModel.state.collectAsState()
+
     MovieListScreen(
-        state = state
+        state = state,
+        onScrollPositionChange = { position ->
+            viewModel.onScrollPositionChange(
+                position = position
+            )
+        }
     )
 }
 
 @Composable
 private fun MovieListScreen(
-    state: MovieListUiState
+    state: MovieListUiState,
+    onScrollPositionChange: (position: Int) -> Unit,
 ) {
     val scaffoldState = rememberScaffoldState()
+    val movies = state.movies
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -49,15 +58,12 @@ private fun MovieListScreen(
                 horizontalArrangement = Arrangement.spacedBy(Dimens.One + Dimens.Half),
                 verticalArrangement = Arrangement.spacedBy(Dimens.One + Dimens.Half),
                 content = {
-                    items(
-                        count = state.movies.size
-                    ) {
-                        val movie = state.movies[it]
+                    itemsIndexed(movies) { index, movie ->
+                        onScrollPositionChange(index)
                         MovieListView(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(Dimens.Twenty + Dimens.Nine)
-                            ,
+                                .height(Dimens.Twenty + Dimens.Nine),
                             movie = movie
                         )
                     }

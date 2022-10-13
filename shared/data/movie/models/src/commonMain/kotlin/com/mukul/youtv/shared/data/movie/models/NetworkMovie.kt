@@ -15,11 +15,17 @@ data class NetworkMovie(
     val poster: String? = null
 )
 
-fun NetworkMovie.asMovie() : Movie {
+fun NetworkMovie.asMovie(
+    page: Int,
+    category: String,
+    customPoster: String,
+) : Movie {
     return Movie(
         id = id,
         title = title,
+        page = page,
         overview = overview,
-        poster = poster
+        poster = customPoster,
+        category = category
     )
 }

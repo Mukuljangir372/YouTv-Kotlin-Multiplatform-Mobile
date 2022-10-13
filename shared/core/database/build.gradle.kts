@@ -60,5 +60,6 @@ kotlin {
 sqldelight {
     database("YouTvAppDatabase") {
         packageName = "com.mukul.youtv.shared.core.database"
+        version = 2
     }
 }

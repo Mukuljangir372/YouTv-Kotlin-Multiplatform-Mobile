@@ -12,9 +12,17 @@ class MovieListNetworkDataSourceImpl(
     private val dispatchers: AppCoroutineDispatchers,
     private val webService: MovieListWebService
 ): MovieListNetworkDataSource {
-    override suspend fun getMovies(category: MovieCategory): ApiResult<NetworkMovies> {
+    override suspend fun getMovies(
+        category: MovieCategory,
+        limit: Int,
+        page: Int
+    ): ApiResult<NetworkMovies> {
         return safeApiCall(dispatcher = dispatchers.default) {
-            webService.getMovies(category.categoryName)
+            webService.getMovies(
+                category = category.categoryName,
+                limit = limit,
+                page = page,
+            )
         }
     }
 }

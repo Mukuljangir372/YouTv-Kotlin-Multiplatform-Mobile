@@ -5,5 +5,5 @@ import com.mukul.youtv.shared.common.models.movie.MovieCategory
 import com.mukul.youtv.shared.data.movie.models.NetworkMovies
 
 interface MovieListNetworkDataSource {
-    suspend fun getMovies(category: MovieCategory): ApiResult<NetworkMovies>
+    suspend fun getMovies(category: MovieCategory, limit: Int, page: Int): ApiResult<NetworkMovies>
 }

@@ -15,25 +15,21 @@ abstract class Interactor<Result,Params> {
         try {
             if(withTimeout) {
                 withTimeout(timeoutMs) {
-                    send(InvokeStarted)
                     send(doWork(params))
-                    send(InvokeSuccess)
                 }
             }else {
-                send(InvokeStarted)
                 send(doWork(params))
-                send(InvokeSuccess)
             }
         }catch (e: TimeoutCancellationException) {
-            send(InvokeError(e))
+            send(null)
         }
-    }.catch { e ->
-        emit(InvokeError(e))
+    }.catch { _ ->
+        emit(null)
     }
 
-    fun execute(params: Params): Result = doWork(params)
+    suspend fun execute(params: Params): Result = doWork(params)
 
-    abstract fun doWork(params: Params): Result
+    abstract suspend fun doWork(params: Params): Result
 
     companion object {
         private const val defaultTimeOut = 5000L

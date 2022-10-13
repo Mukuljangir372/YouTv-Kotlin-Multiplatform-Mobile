@@ -14,16 +14,21 @@ class MovieListLocalDataSourceImpl(
         list.forEach {
             queries.insertMovie(
                 id = it.id.toLong(),
+                page = it.page.toLong(),
                 title = it.title ?: "",
                 overview = it.overview ?: "",
-                poster = it.poster ?: ""
+                poster = it.poster ?: "",
+                category = it.category
             )
         }
         return list
     }
 
-    override fun getMovies(): List<Movie> {
-        return queries.getMovies().executeAsList().map {
+    override fun getMovies(category: String, limit: Int, page: Int): List<Movie> {
+        return queries.getMovies(
+            category = category,
+            page = page.toLong(),
+        ).executeAsList().map {
             it.asMovie()
         }
     }

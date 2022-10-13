@@ -10,9 +10,14 @@ class MovieListWebServiceImpl(
     private val tmdb: TmdbEndpoints,
     private val client: HttpClient
 ): MovieListWebService {
-    override suspend fun getMovies(category: String): HttpResponse {
+    override suspend fun getMovies(
+        category: String,
+        limit: Int,
+        page: Int,
+    ): HttpResponse {
         return client.get("${tmdb.baseUrl}/${tmdb.movie}/${category}") {
             parameter(tmdb.apiKey, tmdb.tmdbApiKey)
+            parameter("page",page)
         }
     }
 }

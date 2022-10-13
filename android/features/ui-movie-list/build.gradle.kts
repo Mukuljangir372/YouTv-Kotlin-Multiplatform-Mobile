@@ -3,7 +3,8 @@ plugins {
 }
 dependencies {
     implementation(project(":shared:shared"))
-    implementation(project("::android:common:ui"))
+    implementation(project(":android:common:ui"))
+    implementation(project(":android:base"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.bundles.android.compose)
     debugImplementation(libs.bundles.android.compose.debug)

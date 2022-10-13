@@ -6,8 +6,10 @@ import commukulyoutvsharedcoredatabase.MovieEntity
 internal fun MovieEntity.asMovie(): Movie {
     return Movie(
         id = id.toInt(),
+        page = page.toInt(),
         title = title,
         overview =  overview,
-        poster = poster
+        poster = poster,
+        category = category,
     )
 }

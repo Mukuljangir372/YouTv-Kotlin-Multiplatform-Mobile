@@ -158,6 +158,7 @@ android_compose = ["android_compose_ui","android_compose_material", "android_com
 android_compose_debug = ["android_compose_tooling","android_compose_test_manifest","android_custom_view","android_custom_view_container"]
 android_accompanist = ["android_accompanist_permissions","android_accompanist_system_ui"]
 android_ktx = ["android_activity_ktx"]
+android_coroutine = ["coroutines_core","coroutines_android"]
 
 [plugins] #------------------------------------------------------------------------------------------
 sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight"}

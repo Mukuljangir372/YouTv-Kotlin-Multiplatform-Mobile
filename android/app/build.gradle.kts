@@ -32,6 +32,7 @@ android {
 }
 dependencies {
     implementation(project(":shared:shared"))
+    implementation(project(":android:base"))
     implementation(project(":android:features:ui-movie-list"))
     implementation(libs.android.material)
     implementation(libs.androidx.app.compat)
